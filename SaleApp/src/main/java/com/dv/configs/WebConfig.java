@@ -14,7 +14,11 @@ import org.springframework.web.servlet.view.JstlView;
  * @author diosvo
  */
 @Configuration
-@ComponentScan(basePackages = "com.dv.controllers")
+@ComponentScan(basePackages = {
+    "com.dv.controllers",
+    "com.dv.repository",
+    "com.dv.service"
+})
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
@@ -29,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setViewClass(JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/");
         resolver.setSuffix(".jsp");
-        
+
         return resolver;
     }
 }
