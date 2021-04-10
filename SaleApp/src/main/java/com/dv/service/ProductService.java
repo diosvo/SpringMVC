@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProductService {
 
     List<Product> getProducts(String kw);
+
+    boolean deleteProduct(int productId);
 }
