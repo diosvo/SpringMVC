@@ -1,7 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link href="<c:url value="/css/main.css"/>" 
-      rel="stylesheet" />
 
 <h1 class="text-center text-success">Danh mục sản phẩm</h1>
 
@@ -21,9 +19,13 @@
                 <td>${p.name}</td>
                 <td>${p.price}</td>
                 <td>
-                    <a href="javascript:;" class="btn btn-danger" onclick="deleteProduct(${p.id})">Xóa</a>
-                    <a href="javascript:;" class="btn btn-info">Cập nhật</a>
-                    <a href="javascript:;" class="btn btn-success">Thêm</a>
+                    <a href="javascript:;" class="btn btn-danger" 
+                       onclick="deleteProduct(${p.id})">Xóa</a>
+                    <a href="<c:url value="/product" />/?productId=${p.id}" 
+                       class="btn btn-info">Cập nhật</a>
+                    <a href="javascript:;" 
+                       onclick="addToCart(${p.id})"
+                       class="btn btn-success">Thêm vào giỏ</a>
                 </td>
             </tr>
         </c:forEach>

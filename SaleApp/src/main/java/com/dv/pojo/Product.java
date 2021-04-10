@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -27,11 +30,16 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
+    
     private String name;
     private String description;
+    @NotNull(message="{product.price.notNullMsg}")
+    @Min(value=100,message="{product.price.minMsg}")
+    @Max(value=100,message="{product.price.maxMsg}")
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "category_id")
+     @NotNull(message="{product.price.notNullMsg}")
     private Category category;
 
     /**

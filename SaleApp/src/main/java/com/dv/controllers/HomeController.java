@@ -1,7 +1,12 @@
 package com.dv.controllers;
 
+import com.dv.pojo.Cart;
 import com.dv.service.CategoryService;
 import com.dv.service.ProductService;
+import com.dv.utils.Utils;
+import java.math.BigDecimal;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +30,11 @@ public class HomeController {
     private ProductService productService;
 
     @ModelAttribute
-    public void addAttribute(Model model) {
+    public void addAttributes(Model model, HttpSession session) {
         model.addAttribute("categories", this.categoryService.getCategories());
+
+        Map<String, BigDecimal> cartStats = Utils.cartStats((Map<Integer, Cart>) session.getAttribute("cart"));
+        model.addAttribute("cartStats", cartStats);
     }
 
     @RequestMapping("/")
