@@ -24,6 +24,12 @@
                 </c:forEach>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/stats" />">
+                        Thống kê
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link text-warning" href="<c:url value="/cart" />">
                         Giỏ hàng 
                         <span class="badge badge-danger" id="cart-counter">${cartStats.totalQuantity}</span>

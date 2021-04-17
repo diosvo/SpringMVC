@@ -1,6 +1,8 @@
 package com.dv.service;
 
 import com.dv.pojo.Cart;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,4 +12,5 @@ import java.util.Map;
 public interface OrderService {
 
     boolean addOrder(Map<Integer, Cart> cart);
+    List<Object[]> getStats(Date fromDate, Date toDate);
 }
