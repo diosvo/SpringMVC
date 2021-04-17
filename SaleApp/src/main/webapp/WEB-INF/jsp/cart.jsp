@@ -35,4 +35,6 @@
         </c:forEach>
     </c:if>
 </table>
-<input type="button" value="Thanh toán" class="btn btn-danger" />
+<input type="button" value="Thanh toán" class="btn btn-danger" onclick="pay()"/>
+
+<script src="<c:url value="js/main.js"/>"></script>
