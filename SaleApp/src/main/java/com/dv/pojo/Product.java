@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dv.pojo;
 
 import java.io.Serializable;
@@ -30,16 +25,16 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
-    
+
     private String name;
     private String description;
-    @NotNull(message="{product.price.notNullMsg}")
-    @Min(value=100,message="{product.price.minMsg}")
-    @Max(value=100,message="{product.price.maxMsg}")
+    @NotNull(message = "{product.price.notNullMsg}")
+    @Min(value = 100, message = "{product.price.minMsg}")
+    @Max(value = 100, message = "{product.price.maxMsg}")
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "category_id")
-     @NotNull(message="{product.price.notNullMsg}")
+    @NotNull(message = "{product.price.notNullMsg}")
     private Category category;
 
     /**
