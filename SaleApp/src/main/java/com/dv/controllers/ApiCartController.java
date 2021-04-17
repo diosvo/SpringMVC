@@ -2,6 +2,7 @@ package com.dv.controllers;
 
 import com.dv.pojo.Cart;
 import com.dv.pojo.Product;
+import com.dv.service.OrderService;
 import com.dv.service.ProductService;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,9 @@ public class ApiCartController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping("/cart/{productId}")
     @ResponseStatus(HttpStatus.OK)
     public void addToCart(@PathVariable(name = "productId") int productId,
@@ -35,7 +40,7 @@ public class ApiCartController {
             cart = new HashMap<>();
         }
 
-        if (cart.containsKey(productId) == true) {// đã có trong giỏ 
+        if (cart.containsKey(productId) == true) { // đã có trong giỏ 
             Cart c = cart.get(productId);
             c.setQuantity(c.getQuantity() + 1);
         } else { // chưa có trong giỏ
@@ -51,5 +56,13 @@ public class ApiCartController {
         }
 
         session.setAttribute("cart", cart);
+    }
+
+    @PostMapping("/pay")
+    @ResponseStatus(HttpStatus.OK)
+    public void pay(HttpSession session) {
+        if (this.orderService.addOrder((Map<Integer, Cart>) session.getAttribute("cart")) == true) {
+            session.removeAttribute("cart");
+        }
     }
 }
