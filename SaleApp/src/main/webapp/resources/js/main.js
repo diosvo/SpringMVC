@@ -19,7 +19,7 @@ function deleteProduct(productId) {
 }
 
 function addToCart(productId) {
-    fetch(`/SaleWebApp/api/cart/${productId}`).then(function (res) {
+    fetch(`/SaleApp/api/cart/${productId}`).then(function (res) {
         if (res.status === 200) {
             let d = document.getElementById("cart-counter");
             let v = parseInt(d.innerText);
